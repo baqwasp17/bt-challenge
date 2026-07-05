@@ -13,18 +13,20 @@ padding-top:80px;
 overflow:hidden;
 }
 
+/* Loader ALWAYS visible */
 .loader{
 width:300px;
 height:20px;
 border:1px solid #00ff88;
 margin:20px auto;
+position:relative;
 }
 
 .bar{
 height:100%;
 width:0%;
 background:#00ff88;
-animation:load 3s forwards;
+animation:load 3s linear forwards;
 }
 
 @keyframes load{
@@ -34,9 +36,11 @@ to{width:100%}
 #result{
 display:none;
 }
-</style>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+#status{
+margin-top:20px;
+}
+</style>
 
 </head>
 
@@ -74,14 +78,22 @@ display:none;
 
 </div>
 
+<!-- Load confetti LAST to avoid blocking -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <script>
 function launchConfetti(){
+    if(typeof confetti !== "function"){
+        console.log("Confetti failed to load");
+        return;
+    }
+
     let end = Date.now() + 3000;
 
     (function frame(){
         confetti({
-            particleCount: 6,
-            spread: 80,
+            particleCount: 5,
+            spread: 90,
             origin: { y: 0.6 }
         });
 
@@ -91,17 +103,20 @@ function launchConfetti(){
     })();
 }
 
-setTimeout(()=>{
-    document.getElementById("title").innerText = "ACCESS GRANTED";
-    document.getElementById("status").innerText = "Finalizing report...";
+window.onload = function(){
 
-    document.querySelector(".loader").style.display = "none";
+    setTimeout(()=>{
+        document.getElementById("title").innerText = "ACCESS GRANTED";
+        document.getElementById("status").innerText = "Finalizing report...";
 
-    document.getElementById("result").style.display = "block";
+        document.querySelector(".loader").style.display = "none";
+        document.getElementById("result").style.display = "block";
 
-    launchConfetti();
+        launchConfetti();
 
-}, 3000);
+    }, 3000);
+
+};
 </script>
 
 </body>
