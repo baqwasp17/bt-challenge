@@ -1,21 +1,55 @@
 <!DOCTYPE html>
-
 <html>
+<head>
+<title>Final</title>
+<style>
+body{background:black;color:#00ff88;font-family:monospace;text-align:center;padding-top:80px}
+.loader{width:300px;height:20px;border:1px solid #00ff88;margin:auto}
+.bar{width:0;height:100%;background:#00ff88;animation:load 4s forwards}
+@keyframes load{to{width:100%}}
+</style>
+</head>
 
-<body style="background:black;color:#00ff00;font-family:monospace;text-align:center;padding-top:100px;">
+<body>
 
-<h1>Congratulations!</h1>
+<h1>Decrypting Evidence...</h1>
 
-<h2>You solved everything.</h2>
+<div class="loader"><div class="bar"></div></div>
 
-<p>There was never a mystery.</p>
+<p>Analyzing responses...</p>
 
-<p>None of your answers mattered.</p>
+<script>
+setTimeout(()=>{
+document.body.innerHTML = `
+<h1>COMPLETE</h1>
 
-<p>You just spent half an hour solving absolutely nothing.</p>
+<p>You followed every instruction.</p>
 
-<h1>😂</h1>
+<p>QR codes scanned. Ciphers decoded. Forms filled.</p>
+
+<hr>
+
+<h2>FINAL RESULT</h2>
+
+<p>There was no investigation.</p>
+
+<p>No data was stored.</p>
+
+<p>No answers mattered.</p>
+
+<h2>You were just curious.</h2>
+
+<br>
+
+<h1>🏆 Achievement Unlocked:</h1>
+<p>Professional Rabbit Hole Explorer</p>
+
+<br>
+
+<p>Made by &lt;YOUR_NAME&gt;</p>
+`;
+},4000);
+</script>
 
 </body>
-
 </html>
