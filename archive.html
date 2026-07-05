@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Archive</title>
+<title>Archive Node</title>
+
 <style>
-body{background:#000;color:#ccc;font-family:monospace;padding:40px}
-.box{border:1px solid #444;padding:20px}
+body{
+background:#000;
+color:#cfcfcf;
+font-family:monospace;
+padding:40px;
+}
+
+.box{
+border:1px solid #444;
+padding:20px;
+max-width:600px;
+}
+
+#qr{
+display:none;
+margin-top:20px;
+}
 </style>
 </head>
 
 <body>
+
 <div class="box">
 
 <h2>ARCHIVE NODE</h2>
 
 <p>Status: LOCKED</p>
 
-<p>Decrypting memory stream...</p>
+<p>Encrypted stream:</p>
 
-<pre>
--. . .- .-. .-.. -.--
-</pre>
+<pre>-. . .- .-. .-.. -.--</pre>
 
-<p>Hint: Morse Code</p>
+<p>Enter decoded word:</p>
 
-<input placeholder="Enter decoded word">
-<button onclick="alert('Access bypassed')">Submit</button>
+<input id="morse">
+<button onclick="check()">Submit</button>
 
-<br><br>
+<p id="msg"></p>
 
-<h3>System Override Available</h3>
-<a href="final.html">Continue</a>
+<div id="qr">
+    <h3>Override Granted</h3>
+    <p>Final access node detected:</p>
+
+    <!-- QR2 goes here -->
+    <a href="final.html">
+        <img src="images/qr2.png" width="220">
+    </a>
+
+    <p>Scan to continue.</p>
+</div>
 
 </div>
-</body>
-</html><!DOCTYPE html>
 
-<html>
+<script>
+function check(){
+    let v = document.getElementById("morse").value.trim().toLowerCase();
 
-<body style="background:#202020;color:white;font-family:Arial;padding:60px;">
-
-<h1>Archive</h1>
-
-<p>Password hint:</p>
-
-<p>Combine your previous answers.</p>
-
-<p>(Just kidding.)</p>
-
-<button onclick="location.href='final.html'">
-
-Continue
-
-</button>
+    if(v === "nearly"){
+        document.getElementById("msg").innerText = "Access granted.";
+        document.getElementById("qr").style.display = "block";
+    } else {
+        document.getElementById("msg").innerText = "Incorrect decryption.";
+    }
+}
+</script>
 
 </body>
-
 </html>
