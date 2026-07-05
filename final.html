@@ -2,53 +2,121 @@
 <html>
 <head>
 <title>Final</title>
+
 <style>
-body{background:black;color:#00ff88;font-family:monospace;text-align:center;padding-top:80px}
-.loader{width:300px;height:20px;border:1px solid #00ff88;margin:auto}
-.bar{width:0;height:100%;background:#00ff88;animation:load 4s forwards}
-@keyframes load{to{width:100%}}
+body{
+background:black;
+color:#00ff88;
+font-family:monospace;
+text-align:center;
+padding-top:80px;
+overflow:hidden;
+}
+
+/* Loader ALWAYS visible */
+.loader{
+width:300px;
+height:20px;
+border:1px solid #00ff88;
+margin:20px auto;
+position:relative;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:#00ff88;
+animation:load 3s linear forwards;
+}
+
+@keyframes load{
+to{width:100%}
+}
+
+#result{
+display:none;
+}
+
+#status{
+margin-top:20px;
+}
 </style>
+
 </head>
 
 <body>
 
-<h1>Decrypting Evidence...</h1>
+<h1 id="title">Decrypting...</h1>
 
-<div class="loader"><div class="bar"></div></div>
+<div class="loader">
+    <div class="bar"></div>
+</div>
 
-<p>Analyzing responses...</p>
+<p id="status">Analyzing results...</p>
+
+<div id="result">
+
+    <h1>COMPLETE</h1>
+
+    <p>You followed every clue.</p>
+    <p>QR codes scanned. Ciphers decoded. Forms completed.</p>
+
+    <hr>
+
+    <h2>FINAL RESULT</h2>
+
+    <p>There was no mystery.</p>
+    <p>Nothing was tracked.</p>
+    <p>Everything was intentional nonsense.</p>
+
+    <h2>🏆 Achievement Unlocked</h2>
+    <p>Professional Rabbit Hole Explorer</p>
+
+    <br>
+
+    <p>Made by Yours truly Neani Glntv</p>
+
+</div>
+
+<!-- Load confetti LAST to avoid blocking -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-setTimeout(()=>{
-document.body.innerHTML = `
-<h1>COMPLETE</h1>
+function launchConfetti(){
+    if(typeof confetti !== "function"){
+        console.log("Confetti failed to load");
+        return;
+    }
 
-<p>You followed every instruction.</p>
+    let end = Date.now() + 3000;
 
-<p>QR codes scanned. Ciphers decoded. Forms filled.</p>
+    (function frame(){
+        confetti({
+            particleCount: 5,
+            spread: 90,
+            origin: { y: 0.6 }
+        });
 
-<hr>
+        if(Date.now() < end){
+            requestAnimationFrame(frame);
+        }
+    })();
+}
 
-<h2>FINAL RESULT</h2>
+window.onload = function(){
 
-<p>There was no investigation.</p>
+    setTimeout(()=>{
+        document.getElementById("title").innerText = "ACCESS GRANTED";
+        document.getElementById("status").innerText = "Finalizing report...";
 
-<p>No data was stored.</p>
+        document.querySelector(".loader").style.display = "none";
+        document.getElementById("result").style.display = "block";
 
-<p>No answers mattered.</p>
+        launchConfetti();
 
-<h2>You were just curious.</h2>
+    }, 3000);
 
-<br>
-
-<h1>🏆 Achievement Unlocked:</h1>
-<p>Professional Rabbit Hole Explorer</p>
-
-<br>
-
-<p>Made by Yours Truly Neani Glntv</p>
-`;
-},4000);
+};
 </script>
 
 </body>
