@@ -1,55 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<title>Terminal</title>
 <style>
-
-body{
-background:black;
-color:white;
-font-family:Arial;
-max-width:700px;
-margin:auto;
-padding:50px;
-}
-
-input{
-width:100%;
-padding:10px;
-margin:10px 0;
-}
-
-button{
-padding:10px 20px;
-}
-
+body{background:#111;color:white;font-family:monospace;padding:40px}
+input,button{padding:10px;margin-top:10px}
+.hidden{display:none}
 </style>
-
 </head>
 
 <body>
 
-<h1>Verification</h1>
+<h2>IDENTITY CHECK</h2>
 
-<p>Your answers may be used later.</p>
+<p>Answer (not saved):</p>
+<ul>
+<li>Favorite food?</li>
+<li>Something you're good at?</li>
+</ul>
 
-<label>Favorite food</label>
+<hr>
 
-<input>
+<p>Decode this:</p>
+<pre>uryyb qrgrpgvir</pre>
 
-<label>Favorite color</label>
+<p>Enter decoded phrase:</p>
 
-<input>
+<input id="pw">
+<button onclick="check()">Submit</button>
 
-<p>Decode:</p>
+<p id="fail" style="color:red"></p>
 
-<pre>
-uryyb qrgrpgvir
-</pre>
+<div id="next" class="hidden">
+    <h3>Access Granted</h3>
+    <p>Continue investigation:</p>
+    <a href="<GOOGLE_FORM_URL>">Proceed</a>
+</div>
 
-<button onclick="location.href='stage3.html'">
-Continue
-</button>
+<script>
+function check(){
+  let v = document.getElementById("pw").value.toLowerCase();
+  if(v === "hello detective"){
+    document.getElementById("next").style.display="block";
+  } else {
+    document.getElementById("fail").innerText="Incorrect decoding.";
+  }
+}
+</script>
 
 </body>
 </html>
